@@ -25,6 +25,7 @@ class Game
 		Room storage_closet = new Room("in the storage closet");
 
 		// Initialise room exits
+		//current,	  exit to -> location
 		outside.AddExit("east", theatre);
 		outside.AddExit("south", lab);
 		outside.AddExit("west", pub);
@@ -36,7 +37,7 @@ class Game
 		lab.AddExit("north", outside);
 		lab.AddExit("east", office);
 		lab.AddExit("up", storage_closet);
-		
+
 		storage_closet.AddExit("down", lab);
 
 		office.AddExit("west", lab);
