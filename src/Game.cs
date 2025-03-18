@@ -7,6 +7,8 @@ class Game
 	// private Room currentRoom;
 	private Player player;
 
+
+
 	// Constructor
 	public Game()
 	{
@@ -109,6 +111,9 @@ class Game
 			case "look":
 				LookRoom();
 				break;
+			case "status":
+				health(player);
+				break;
 		}
 
 		return wantToQuit;
@@ -157,3 +162,5 @@ class Game
 		Console.WriteLine(player.CurrentRoom.GetLongDescription());
 	}
 }
+
+
