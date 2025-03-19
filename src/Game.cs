@@ -7,8 +7,6 @@ class Game
 	// private Room currentRoom;
 	private Player player;
 
-
-
 	// Constructor
 	public Game()
 	{
@@ -91,7 +89,7 @@ class Game
 	{
 		bool wantToQuit = false;
 
-		if(command.IsUnknown())
+		if (command.IsUnknown())
 		{
 			Console.WriteLine("I don't know what you mean...");
 			return wantToQuit; // false
@@ -112,7 +110,7 @@ class Game
 				LookRoom();
 				break;
 			case "status":
-				health(player);
+				StatusHealth();
 				break;
 		}
 
@@ -122,7 +120,7 @@ class Game
 	// ######################################
 	// implementations of user commands:
 	// ######################################
-	
+
 	// Print out some help information.
 	// Here we print the mission and a list of the command words.
 	private void PrintHelp()
@@ -138,7 +136,7 @@ class Game
 	// room, otherwise print an error message.
 	private void GoRoom(Command command)
 	{
-		if(!command.HasSecondWord())
+		if (!command.HasSecondWord())
 		{
 			// if there is no second word, we don't know where to go...
 			Console.WriteLine("Go where?");
@@ -151,16 +149,31 @@ class Game
 		Room nextRoom = player.CurrentRoom.GetExit(direction);
 		if (nextRoom == null)
 		{
-			Console.WriteLine("There is no door to "+direction+"!");
+			Console.WriteLine("There is no door to " + direction + "!");
 			return;
 		}
 
+		player.Damage(5);
 		player.CurrentRoom = nextRoom;
 		LookRoom();
 	}
-	private void LookRoom(){
+	private void LookRoom()
+	{
 		Console.WriteLine(player.CurrentRoom.GetLongDescription());
 	}
-}
 
+	private void StatusHealth()
+	{
+
+		if (player.health <= 50)
+		{
+			Console.WriteLine("You have " + player.health + " HP left.");
+			Console.WriteLine("I would advise finding some way to heal.");
+		}
+		else
+		{
+			Console.WriteLine("You have " + player.health + " HP left.");
+		}
+	}
+}
 
