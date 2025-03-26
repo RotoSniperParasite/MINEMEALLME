@@ -1,4 +1,5 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Game
 {
@@ -6,6 +7,8 @@ class Game
 	private Parser parser;
 	// private Room currentRoom;
 	private Player player;
+
+	public Item item;
 
 	// Constructor
 	public Game()
@@ -45,16 +48,18 @@ class Game
 		office.AddExit("west", lab);
 
 		// Create your Items here
-		// ...
+		Item item = new Item(3,"An item.");
+		
 		// And add them to the Rooms
 		// ...
 
 		// Start game outside
 		player.CurrentRoom = outside;
+
 	}
 
-	//  Main play routine. Loops until end of play.
-	public void Play()
+    //  Main play routine. Loops until end of play.
+    public void Play()
 	{
 		PrintWelcome();
 
